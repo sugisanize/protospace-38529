@@ -4,6 +4,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to "/prototypes/#{@comment.prototype.id}"
     else
+      @prototype = @comment.prototype # なぜこの記述が必要なのか説明できない
+      @comments = @prototype.comments.includes(:user) # なぜこの記述が必要なのか説明できない
       render "prototypes/show"
     end
   end
